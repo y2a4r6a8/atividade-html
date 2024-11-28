@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulação de DOM</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #output {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        min-height: 50px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Adicionar Parágrafos</h1>
+    <label for="inputText">Digite o texto do parágrafo:</label>
+    <input type="text" id="inputText" placeholder="Escreva algo aqui" />
+    <button id="addParagraph">Adicionar</button>
+    <button id="showCount">Contar Linhas</button>
+    <div id="output"></div>
+
+    <script>
+      const inputText = document.getElementById("inputText");
+      const outputDiv = document.getElementById("output");
+      const addParagraphButton = document.getElementById("addParagraph");
+      const showCountButton = document.getElementById("showCount");
+      let paragraphCount = 0;
+
+      addParagraphButton.addEventListener("click", () => {
+        const text = inputText.value.trim();
+        if (text !== "") {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = text;
+          outputDiv.appendChild(paragraph);
+          paragraphCount++;
+          inputText.value = "";
+        } else {
+          alert("Digite algo antes de adicionar!");
+        }
+      });
+
+      showCountButton.addEventListener("click", () => {
+        alert(`${paragraphCount} linha(s) foram adicionadas`);
+      });
+    </script>
+  </body>
+</html>
